@@ -34,4 +34,12 @@ class TranslatorTest < Minitest::Test
 
     assert_equal actual, expected
   end
+
+  def test_it_raises_exception_for_non_alphabetic_characters
+    input = 'arr0w'
+
+    assert_raises TypeError do
+      Translator.to_pig_latin(input)
+    end
+  end
 end
