@@ -19,6 +19,7 @@ class TranslatorTest < Minitest::Test
     assert_equal actual, expected
   end
 
+
   def test_it_can_translate_multiple_words_to_pig_latin
     input = 'pig arrow latin'
     actual = Translator.to_pig_latin(input)
@@ -49,5 +50,21 @@ class TranslatorTest < Minitest::Test
     assert_raises TypeError do
       Translator.to_pig_latin(input)
     end
+  end
+
+  def test_it_can_translate_word_starting_with_multiple_consonants
+    input = 'lllama'
+    actual = Translator.to_pig_latin(input)
+    expected = 'amalllay'
+
+    assert_equal actual, expected
+  end
+
+  def test_it_can_translate_word_starting_with_only_consonants
+    input = 'bbb'
+    actual = Translator.to_pig_latin(input)
+    expected = 'bbbay'
+
+    assert_equal actual, expected
   end
 end

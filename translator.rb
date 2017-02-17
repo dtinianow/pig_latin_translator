@@ -25,11 +25,21 @@ class Translator
     if is_vowel?(word[0])
       word + 'way'
     else
-      word[1..-1] + word[0] + 'ay'
+      count = consecutive_consonant_count(word)
+      word[count..-1] + word[0...count] + 'ay'
     end
   end
 
   def is_vowel?(letter)
     %w(a e i o u).include?(letter)
+  end
+
+  def consecutive_consonant_count(word)
+    consonants = 0
+    word.split('').each do |letter|
+      break if is_vowel?(letter)
+      consonants += 1
+    end
+    consonants
   end
 end
